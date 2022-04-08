@@ -69,7 +69,7 @@ module.exports = {
         };
         const response = await webservice(config);
         try {
-            fs.writeFile('finan.pdf', response, 'base64', (error) => {
+            fs.writeFile('./src/views/files/finan.pdf', response, 'base64', (error) => {
                 if (error) throw error;
             });
             if (response) {

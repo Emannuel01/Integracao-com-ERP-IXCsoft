@@ -1,5 +1,7 @@
 window.addEventListener("load", () => {
-    getFinan()
+    getFinan();
+    let userName = document.getElementById("name-user");
+    userName.innerText = sessionStorage.getItem("user");
 });
 async function getFinan() {
     let idCliente = sessionStorage.getItem('id_user');
@@ -65,9 +67,8 @@ async function getFileFinan(id) {
         redirect: 'follow'
     };
     let response = await fetch("http://localhost:3000/finan_file", requestOptions).then(result => result.json());
-    if (response.type == "sucess") {
-
-    }
+    let modalPdf = document.querySelector('object');
+    modalPdf.data = "http://localhost:3000/pdf";
 }
 
 function closeModalPdf() {
@@ -75,8 +76,8 @@ function closeModalPdf() {
     document.querySelector(".container-body").style.display = "block"
 }
 
-function printFinan(id) {
-    getFileFinan(id);
+async function printFinan(id) {
+    await getFileFinan(id);
     document.querySelector(".container-pdf").style.display = "block";
     document.querySelector(".container-body").style.display = "none"
 }

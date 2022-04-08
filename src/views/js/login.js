@@ -25,7 +25,7 @@ async function validateReturn(data) {
     if (data.authenticated) {
         window.sessionStorage.setItem('user', `${data.client}`);
         window.sessionStorage.setItem('id_user', `${data.id_client}`);
-        window.location.replace("http://127.0.0.1:5500/sistema.html");
+        window.location.replace("file:///home/ixcsoft/Documentos/ProjetoApp/src/views/sistema.html");
 
     }
 }

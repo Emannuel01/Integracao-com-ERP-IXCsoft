@@ -10,6 +10,7 @@ app.use(bodyParser.json())
 app.use(cors({ credentials: true, origin: true }));
 
 app.use(router);
+app.use('/pdf', express.static('./src/views/files/finan.pdf'));
 
 app.listen(3000);
 console.log('server run 3000')

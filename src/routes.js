@@ -1,13 +1,11 @@
 const express = require('express');
 const { authenticateUser } = require('./controllers/authenticateUser');
 const { getFinan, getFileFinan } = require('./controllers/finan');
-const { getTicket } = require('./controllers/ticket');
 
 const router = express.Router();
 
 router.post('/login', authenticateUser);
 router.post('/finan', getFinan);
 router.post('/finan_file', getFileFinan);
-router.get('/ticket', getTicket);
 
 module.exports = router;
