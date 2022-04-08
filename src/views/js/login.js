@@ -1,22 +1,31 @@
-function authenticate(url) {
+async function authenticate() {
     let login = document.getElementById('login').value;
     let password = document.getElementById('passwd').value;
-    var data = JSON.stringify({
-        "login": login,
-        "password": password
+
+    let myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    let raw = JSON.stringify({
+        "login": `${login}`,
+        "password": `${password}`
     });
 
-    var xhr = new XMLHttpRequest();
-    xhr.withCredentials = true;
+    let requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+    };
+    let data = await fetch("http://localhost:3000/login", requestOptions).then(result => result.json());
+    validateReturn(data);
+    return;
+}
 
-    xhr.addEventListener("readystatechange", function() {
-        if (this.readyState === 4) {
-            console.log(this.responseText);
-        }
-    });
+async function validateReturn(data) {
+    if (data.authenticated) {
+        window.sessionStorage.setItem('user', `${data.client}`);
+        window.sessionStorage.setItem('id_user', `${data.id_client}`);
+        window.location.replace("http://127.0.0.1:5500/sistema.html");
 
-    xhr.open("GET", "http://localhost:3000/login");
-    xhr.setRequestHeader("Content-Type", "application/json");
-
-    xhr.send(data);
+    }
 }

@@ -5,9 +5,9 @@ const { getTicket } = require('./controllers/ticket');
 
 const router = express.Router();
 
-router.get('/login', authenticateUser);
-router.get('/finan', getFinan);
-router.get('/finan_file', getFileFinan);
+router.post('/login', authenticateUser);
+router.post('/finan', getFinan);
+router.post('/finan_file', getFileFinan);
 router.get('/ticket', getTicket);
 
 module.exports = router;

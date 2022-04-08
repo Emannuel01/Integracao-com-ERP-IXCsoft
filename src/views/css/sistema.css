@@ -1,0 +1,169 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+    text-decoration: none;
+}
+
+textarea:focus,
+input:focus,
+select:focus {
+    box-shadow: 0 0 0 0;
+    border: 0 none;
+    outline: 0;
+}
+
+.container-body {
+    width: 100%;
+    height: 100vh;
+}
+
+.container-body>.container-header {
+    position: fixed;
+    right: 0;
+    z-index: 2000;
+    width: 100%;
+    height: 10%;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 4px 4px 4px 3px rgba(255, 255, 255, 0.2);
+    color: #c4bdbd;
+}
+
+.container-body>.container-sidebar {
+    position: fixed;
+    padding-top: 10%;
+    width: 13%;
+    height: 90%;
+    background-color: rgb(255, 255, 255);
+    float: left;
+}
+
+.container-body>.container-content {
+    width: 87%;
+    height: auto;
+    background-color: rgb(83, 83, 83);
+    float: right;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fas {
+    display: block;
+    font-size: 30px;
+    margin: 40px 0 10px 0;
+}
+
+.side-boxes {
+    color: #c4bdbd;
+    width: 100%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.side-boxes>.description {
+    font-size: 16px;
+    font-family: roboto;
+}
+
+.container-content>.container-modal-finan {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(218, 218, 218);
+    padding-bottom: 40px;
+}
+
+.container-content>.container-modal-finan>h2 {
+    color: rgb(189, 175, 175);
+    font-size: 36px;
+    font-family: roboto;
+    margin: 10px 0 0 25px;
+}
+
+.tableFinan {
+    width: 90%;
+    background-color: rgb(255, 255, 255);
+    height: 90%;
+    margin: 50px 0 0 30px;
+    box-shadow: 10px 5px 5px black;
+}
+
+.tableFinan>thead>tr>th {
+    height: 60px;
+    width: 20%;
+    font-size: 22px;
+    color: rgb(143, 143, 143);
+    font-family: roboto;
+}
+
+.tableFinan>tbody>tr>td {
+    height: 60px;
+    width: 20%;
+    font-size: 16px;
+    color: rgb(143, 143, 143);
+    font-family: roboto;
+    text-align: center;
+    cursor: pointer;
+}
+
+.container-user-header {
+    float: right;
+}
+
+.container-user-header>span {
+    font-size: 36px;
+    margin: 0.5em 0.6em 0 0;
+}
+
+#user-icon {
+    padding: 8px;
+    border-radius: 50%;
+    background-color: rgb(0, 3, 180);
+}
+
+.container-pdf {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    background-color: gray;
+    float: left;
+    display: none;
+}
+
+.container-pdf>.header-pdf {
+    width: 100%;
+    height: 10vh;
+    background-color: gray;
+    color: white;
+}
+
+.container-pdf>.header-pdf>button {
+    background-color: gray;
+    color: white;
+    font-size: 36px;
+}
+
+.container-pdf>div {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-pdf>div>object {
+    width: 90%;
+    height: 110vh;
+}
+
+.print-file {
+    color: white;
+    background-color: transparent;
+    cursor: pointer;
+}

@@ -33,7 +33,8 @@ module.exports = {
             if (response.total > 0) {
                 return res.status(200).json({
                     authenticated: true,
-                    id_client: response.registros[0].id
+                    id_client: response.registros[0].id,
+                    client: response.registros[0].razao
                 });
             } else {
                 return res.status(200).json({

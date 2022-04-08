@@ -2,6 +2,7 @@ const { webservice } = require('./webservice');
 
 const url = "https://suportessl.ixcsoft.com.br/webservice/v1";
 const token = "Basic MTE4OmRjMzY5OTE2NmY4NmEwMjNlNmRlMGUxNDc3MWQxYTAyZGUyMmE0ZTU5MGMzMjA3YjcxYWQxOTc4MDRiYzIxNGI";
+const fs = require("fs");
 
 module.exports = {
     async getFinan(req, res) {
@@ -13,7 +14,7 @@ module.exports = {
             "pg": "1",
             "rp": "100",
             "sortname": "fn_areceber.id",
-            "sortorder": "desc",
+            "sortorder": "asc",
             "grid_param": `[{\"TB\":\"fn_areceber.id_cliente\", \"OP\" : \"=\", \"P\" : \"${id_client}\"}]`
         });
 
@@ -68,10 +69,12 @@ module.exports = {
         };
         const response = await webservice(config);
         try {
+            fs.writeFile('finan.pdf', response, 'base64', (error) => {
+                if (error) throw error;
+            });
             if (response) {
                 return res.status(200).json({
-                    type: "sucesso",
-                    data: response
+                    type: "sucesso"
                 });
             } else {
                 return res.status(200).json({

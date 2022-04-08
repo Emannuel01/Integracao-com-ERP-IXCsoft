@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/sistema.css">
+    <link rel="stylesheet" href="./css/fonts.css">
+    <title>Aplication</title>
+</head>
+
+<body>
+    <div class="container-body">
+        <div class="container-header">
+            <div class="container-user-header">
+                <span class="fas fa-user icons" id="user-icon"></span>
+                <span>Mannuel</span>
+            </div>
+        </div>
+
+        <div class="container-sidebar">
+            <div class="side-boxes">
+                <span class="fas fa-donate icons" id="finan"></span>
+                <span class="description">Financeiro</span>
+            </div>
+            <div class="side-boxes">
+                <span class="fas fa-headphones icons" id="attendance"></span>
+                <span class="description">Atendimentos</span>
+            </div>
+        </div>
+
+        <div class="container-content">
+            <div class="container-modal-finan">
+                <h2>Financeiro</h2>
+                <table class="tableFinan">
+                    <thead>
+                        <tr>
+                            <th>Status</th>
+                            <th>Período</th>
+                            <th>Vencimento</th>
+                            <th>Valor</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="container-pdf">
+        <div class="header-pdf">
+            <button class="fas fa-window-close" onclick="closeModalPdf()"></button>
+        </div>
+        <div>
+            <object data="file:///home/ixcsoft/Documentos/ProjetoApp/finan.pdf" type="application/pdf">
+                <p>Falha ao carregar o arquivo</p>
+            </object>
+        </div>
+    </div>
+    <script src="./js/sistemaFinan.js"></script>
+    <script src="https://kit.fontawesome.com/64669d9fc9.js" crossorigin="anonymous"></script>
+</body>
+
+</html>
