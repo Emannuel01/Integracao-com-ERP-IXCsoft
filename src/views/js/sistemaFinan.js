@@ -1,4 +1,7 @@
 window.addEventListener("load", () => {
+    if (!sessionStorage.getItem("user")) {
+        window.location.replace("/app/login");
+    }
     getFinan();
     let userName = document.getElementById("name-user");
     userName.innerText = sessionStorage.getItem("user");
@@ -19,7 +22,7 @@ async function getFinan() {
         body: raw,
         redirect: 'follow'
     };
-    let response = await fetch("http://localhost:3000/finan", requestOptions).then(result => result.json());
+    let response = await fetch("/finan", requestOptions).then(result => result.json());
     assembleModalFinan(response.data);
     return;
 }
@@ -66,18 +69,26 @@ async function getFileFinan(id) {
         body: raw,
         redirect: 'follow'
     };
-    let response = await fetch("http://localhost:3000/finan_file", requestOptions).then(result => result.json());
-    let modalPdf = document.querySelector('object');
-    modalPdf.data = "http://localhost:3000/pdf";
+    let response = await fetch("/finan_file", requestOptions).then(result => result.json());
+    if (response.type == 'sucesso') {
+        return true;
+    }
+    return false;
 }
 
 function closeModalPdf() {
     document.querySelector(".container-pdf").style.display = "none";
     document.querySelector(".container-body").style.display = "block"
+    return;
 }
 
 async function printFinan(id) {
-    await getFileFinan(id);
-    document.querySelector(".container-pdf").style.display = "block";
-    document.querySelector(".container-body").style.display = "none"
+    let generatedThePdf = await getFileFinan(id);
+    if (generatedThePdf == true) {
+        document.querySelector(".container-pdf").style.display = "block";
+        document.querySelector(".container-body").style.display = "none";
+        document.getElementById('container-pdf').innerHTML = "<object data='/filePdf' contentType='application/pdf'></object>";
+        return;
+    }
+    return;
 }

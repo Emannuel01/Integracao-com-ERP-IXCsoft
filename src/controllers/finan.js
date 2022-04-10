@@ -1,7 +1,4 @@
-const { webservice } = require('./webservice');
-
-const url = "https://suportessl.ixcsoft.com.br/webservice/v1";
-const token = "Basic MTE4OmRjMzY5OTE2NmY4NmEwMjNlNmRlMGUxNDc3MWQxYTAyZGUyMmE0ZTU5MGMzMjA3YjcxYWQxOTc4MDRiYzIxNGI";
+const { webservice } = require('../webservice/webserviceClient');
 const fs = require("fs");
 
 module.exports = {
@@ -20,10 +17,10 @@ module.exports = {
 
         const config = {
             method: 'post',
-            url: `${url}/fn_areceber`,
+            url: `${process.env.APP_URL}/fn_areceber`,
             headers: {
                 'ixcsoft': 'listar',
-                'Authorization': token,
+                'Authorization': process.env.SECRET_API,
                 'Content-Type': 'application/json'
             },
             data: data
@@ -59,10 +56,10 @@ module.exports = {
 
         const config = {
             method: 'post',
-            url: `${url}/get_boleto`,
+            url: `${process.env.APP_URL}/get_boleto`,
             headers: {
                 'ixcsoft': 'listar',
-                'Authorization': token,
+                'Authorization': process.env.SECRET_API,
                 'Content-Type': 'application/json'
             },
             data: data
@@ -76,15 +73,20 @@ module.exports = {
                 return res.status(200).json({
                     type: "sucesso"
                 });
-            } else {
-                return res.status(200).json({
-                    type: "error",
-                    message: "dados invalidos"
-                });
             }
+            return res.status(200).json({
+                type: "error",
+                message: "dados invalidos"
+            });
         } catch (err) {
             console.log(err);
             return res.status(500).json({ mensage: err });
         }
+    },
+    async filePdf(req, res) {
+        fs.readFile('./src/views/files/finan.pdf', (err, data) => {
+            console.log(err);
+            return res.status(200).contentType("application/pdf").send(data);
+        })
     }
 }

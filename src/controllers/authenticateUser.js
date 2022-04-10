@@ -1,7 +1,4 @@
-const { webservice } = require('./webservice');
-
-const url = "https://suportessl.ixcsoft.com.br/webservice/v1";
-const token = "Basic MTE4OmRjMzY5OTE2NmY4NmEwMjNlNmRlMGUxNDc3MWQxYTAyZGUyMmE0ZTU5MGMzMjA3YjcxYWQxOTc4MDRiYzIxNGI";
+const { webservice } = require('../webservice/webserviceClient');
 
 module.exports = {
     async authenticateUser(req, res) {
@@ -19,28 +16,26 @@ module.exports = {
 
         const config = {
             method: 'post',
-            url: `${url}/cliente`,
+            url: `${process.env.APP_URL}/cliente`,
             headers: {
                 'ixcsoft': 'listar',
-                'Authorization': token,
+                'Authorization': process.env.SECRET_API,
                 'Content-Type': 'application/json'
             },
             data: data
         };
         const response = await webservice(config);
         try {
-            console.log(login);
             if (response.total > 0) {
                 return res.status(200).json({
                     authenticated: true,
                     id_client: response.registros[0].id,
                     client: response.registros[0].razao
                 });
-            } else {
-                return res.status(200).json({
-                    authenticated: false
-                });
             }
+            return res.status(200).json({
+                authenticated: false
+            });
         } catch (err) {
             console.log(err);
             return res.status(500).json({ mensage: err });

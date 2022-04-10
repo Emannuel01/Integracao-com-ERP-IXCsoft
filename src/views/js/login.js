@@ -1,6 +1,9 @@
 async function authenticate() {
     let login = document.getElementById('login').value;
     let password = document.getElementById('passwd').value;
+    if (login == "" || password == "") {
+        return;
+    }
 
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -16,16 +19,22 @@ async function authenticate() {
         body: raw,
         redirect: 'follow'
     };
-    let data = await fetch("http://localhost:3000/login", requestOptions).then(result => result.json());
-    validateReturn(data);
+    let response = await fetch("/login", requestOptions).then(result => result.json());
+    if (response.authenticated) {
+        validateReturn(response);
+        return;
+    }
     return;
 }
 
-async function validateReturn(data) {
-    if (data.authenticated) {
-        window.sessionStorage.setItem('user', `${data.client}`);
-        window.sessionStorage.setItem('id_user', `${data.id_client}`);
-        window.location.replace("file:///home/ixcsoft/Documentos/ProjetoApp/src/views/sistema.html");
-
-    }
+function validateReturn(data) {
+    window.sessionStorage.setItem('user', `${data.client}`);
+    window.sessionStorage.setItem('id_user', `${data.id_client}`);
+    window.location.replace("/app/sistema");
 }
+
+document.addEventListener('keypress', (e) => {
+    if (e.key == "Enter") {
+        authenticate()
+    }
+}, false);
