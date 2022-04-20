@@ -30,7 +30,7 @@ async function authenticate() {
 function validateReturn(data) {
     window.sessionStorage.setItem('user', `${data.client}`);
     window.sessionStorage.setItem('id_user', `${data.id_client}`);
-    window.location.replace("/app/sistema");
+    window.location.replace("/app/system");
 }
 
 document.addEventListener('keypress', (e) => {
