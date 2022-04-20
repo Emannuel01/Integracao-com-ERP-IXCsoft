@@ -16,4 +16,3 @@ app.use('/app/system', express.static('./src/views/system.html'));
 
 
 app.listen(3000);
-console.log('server run 3000');
