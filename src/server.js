@@ -12,7 +12,7 @@ app.use(cors({ credentials: true, origin: true }));
 app.use(router);
 app.use('/app/', express.static('./src/views/'));
 app.use('/app/login', express.static('./src/views/login.html'));
-app.use('/app/sistema', express.static('./src/views/sistema.html'));
+app.use('/app/system', express.static('./src/views/system.html'));
 
 
 app.listen(3000);
