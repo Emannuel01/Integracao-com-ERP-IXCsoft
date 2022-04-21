@@ -85,7 +85,6 @@ module.exports = {
     },
     async filePdf(req, res) {
         fs.readFile('./src/views/files/finan.pdf', (err, data) => {
-            console.log(err);
             return res.status(200).contentType("application/pdf").send(data);
         })
     }
